@@ -7,6 +7,7 @@ import Projects from './pages/Projects';
 import Sectants from './pages/Sectants';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import TikTik from './pages/projects/TikTik';
 import './i18n/config';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/tiktik" element={<TikTik />} />
             <Route path="/sectants" element={<Sectants />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Globe, Code, Flame } from 'lucide-react';
+import { Menu, X, Globe, Code, Flame, Home, FolderGit2, User, Mail } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -14,11 +14,11 @@ const Navigation = () => {
   };
 
   const menuItems = [
-    { path: '/', label: t('navigation.home'), icon: Code },
-    { path: '/projects', label: t('navigation.projects') },
+    { path: '/', label: t('navigation.home'), icon: Home },
+    { path: '/projects', label: t('navigation.projects'), icon: FolderGit2 },
     { path: '/sectants', label: t('navigation.sectants'), icon: Flame },
-    { path: '/about', label: t('navigation.about') },
-    { path: '/contact', label: t('navigation.contact') }
+    { path: '/about', label: t('navigation.about'), icon: User },
+    { path: '/contact', label: t('navigation.contact'), icon: Mail }
   ];
 
   return (
@@ -51,7 +51,7 @@ const Navigation = () => {
                   location.pathname === item.path ? 'text-primary-end' : ''
                 }`}
               >
-                {item.icon && <item.icon size={16} />}
+                <item.icon size={16} />
                 {item.label}
                 {location.pathname === item.path && (
                   <motion.div
@@ -103,7 +103,7 @@ const Navigation = () => {
                   }`}
                   onClick={() => setIsOpen(false)}
                 >
-                  {item.icon && <item.icon size={16} />}
+                  <item.icon size={16} />
                   {item.label}
                 </Link>
               ))}
