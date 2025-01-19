@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
@@ -7,8 +6,9 @@ import Projects from './pages/Projects';
 import Sectants from './pages/Sectants';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import TikTik from './pages/projects/TikTik';
+import TikTik from './pages/projects/EverBook';
 import './i18n/config';
+import EverBook from './pages/projects/EverBook';
 
 function App() {
   return (
@@ -23,6 +23,8 @@ function App() {
             <Route path="/sectants" element={<Sectants />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/everbook" element={<EverBook />} />
+            <Route path="*" element={<Home />} />
           </Routes>
         </main>
         <Footer />

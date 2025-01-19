@@ -2,25 +2,16 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
-
-export interface Project {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-  category: string;
-  technologies: string[];
-  links: {
-    github?: string;
-    live?: string;
-  };
-}
+import { useTranslation } from 'react-i18next';
+import { Project } from '../types/project';
 
 interface ProjectCardProps {
   project: Project;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
+  const { t } = useTranslation();
+  
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -95,7 +86,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             to={`/projects/${project.id}`}
             className="inline-flex items-center text-primary-end hover:text-primary-start transition-colors group/link text-lg"
           >
-            Learn more
+            {t('projects.card.learnMore')}
             <motion.span
               className="inline-block ml-2"
               initial={{ x: 0 }}

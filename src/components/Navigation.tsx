@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Globe, Code, Flame, Home, FolderGit2, User, Mail } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
@@ -27,14 +27,16 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           <Link 
             to="/" 
-            className="flex items-center space-x-2 text-light-100 group"
-          >
+            className="flex items-center space-x-2 text-light-100 group">
             <motion.div
-              whileHover={{ rotate: 180 }}
+              whileHover={{ rotate: 360 }}
               transition={{ duration: 0.3 }}
-              className="p-1 rounded-lg bg-gradient-to-r from-primary-start to-primary-end"
+              className="p-2 rounded-lg"
             >
-              <Code size={24} />
+              <img
+              src="src/images/logo.png"
+              alt="Logo"
+              className="w-10 h-10 "/>
             </motion.div>
             <span className="font-bold text-xl group-hover:text-primary-end transition-colors">
               ByteFlipper

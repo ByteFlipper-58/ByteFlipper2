@@ -1,17 +1,47 @@
-import React from 'react';
+// types.ts
+interface Screenshot {
+  url: string;
+  alt: string;
+}
+
+interface Metric {
+  icon: any;
+  label: string;
+  value: string;
+}
+
+interface ProjectLinks {
+  github?: string;
+  live?: string;
+  googlePlay?: string;
+  ruStore?: string;
+}
+
+interface Project {
+  title: string;
+  description: string;
+  icon: string;
+  technologies: string[];
+  features: string[];
+  screenshots: Screenshot[];
+  links: ProjectLinks;
+  metrics: Metric[];
+}
+
+// EverBook.tsx
 import { motion } from 'framer-motion';
 import { Github, ExternalLink, ArrowLeft, Video, Users, MessageSquare, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
-const TikTik = () => {
-  const project = {
-    title: "TikTik",
+const EverBook = () => {
+  const project: Project = {
+    title: "EverBook",
     description: "A modern social media platform for sharing short-form videos with interactive features and real-time engagement.",
+    icon: "src/images/everbook/logo.png", // Replace with actual app icon
     technologies: [
-      "React", "TypeScript", "Node.js", "Firebase",
-      "Tailwind CSS", "Framer Motion", "FFmpeg",
-      "WebRTC", "Cloud Functions"
+      "Jetpack Compose", "Kotlin", "MVVM", "Room", "Firebase", "Material You",
+      "Retrofit2", "OkHttp3", "GSON", "Moshi", "Datastore Preferences"
     ],
     features: [
       "Video upload and processing with FFmpeg",
@@ -26,7 +56,7 @@ const TikTik = () => {
     screenshots: [
       {
         url: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&q=80",
-        alt: "TikTik Feed Interface"
+        alt: "EverBook Feed Interface"
       },
       {
         url: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&q=80",
@@ -38,8 +68,10 @@ const TikTik = () => {
       }
     ],
     links: {
-      github: "https://github.com/byteflipper/tiktik",
-      live: "https://tiktik-demo.web.app"
+      github: "https://github.com/byteflipper/EverBook",
+      live: "https://EverBook-demo.web.app",
+      googlePlay: "https://play.google.com/store/apps/details?id=com.EverBook",
+      ruStore: "https://apps.rustore.ru/app/com.EverBook"
     },
     metrics: [
       { icon: Video, label: "1M+ Videos", value: "1,234,567" },
@@ -56,32 +88,44 @@ const TikTik = () => {
         <meta name="description" content={project.description} />
       </Helmet>
 
-      <div className="min-h-screen pt-20">
+      <div className="min-h-screen">
         {/* Hero Section */}
-        <section className="relative bg-dark-200 border-b border-dark-300">
+        <section className="relative bg-dark-200">
           <div className="max-w-7xl mx-auto px-4 py-16">
+            
+          <Link
+          to="/projects"
+          className="inline-flex items-center text-light-300 hover:text-primary-end transition-colors mb-12 group pt-10 pl-6"
+          >
+            <ArrowLeft className="mr-2 group-hover:-translate-x-1 transition-transform" />
+            Back to Projects
+            </Link>
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-center"
+              className="text-center max-w-4xl mx-auto"
             >
-              <Link
-                to="/projects"
-                className="inline-flex items-center text-light-300 hover:text-primary-end transition-colors mb-8 group"
-              >
-                <ArrowLeft className="mr-2 group-hover:-translate-x-1 transition-transform" />
-                Back to Projects
-              </Link>
+              <div className="flex flex-col items-center mb-8">
+                <motion.img
+                  src={project.icon}
+                  alt={`${project.title} icon`}
+                  className="w-24 h-24 rounded-2xl shadow-lg mb-6"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                />
+                <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-primary-start to-primary-end bg-clip-text text-transparent">
+                  {project.title}
+                </h1>
+              </div>
               
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary-start to-primary-end bg-clip-text text-transparent">
-                {project.title}
-              </h1>
-              
-              <p className="text-light-300 text-lg max-w-2xl mx-auto mb-8">
+              <p className="text-light-300 text-lg md:text-xl mb-12">
                 {project.description}
               </p>
 
-              <div className="flex justify-center gap-4">
+              <div className="flex flex-wrap justify-center items-center gap-4">
+                {/* All buttons with consistent size */}
                 {project.links.github && (
                   <motion.a
                     href={project.links.github}
@@ -89,9 +133,9 @@ const TikTik = () => {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center px-6 py-3 rounded-lg bg-dark-300 text-light-100 hover:text-primary-end transition-colors"
+                    className="inline-flex items-center justify-center w-[188px] h-[63px] rounded-lg bg-dark-300 text-light-100 hover:text-primary-end transition-colors"
                   >
-                    <Github className="mr-2" size={20} />
+                    <Github className="mr-2" size={24} />
                     View Source
                   </motion.a>
                 )}
@@ -102,10 +146,42 @@ const TikTik = () => {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center px-6 py-3 rounded-lg bg-gradient-to-r from-primary-start to-primary-end text-light-100"
+                    className="inline-flex items-center justify-center w-[188px] h-[63px] rounded-lg bg-gradient-to-r from-primary-start to-primary-end text-light-100"
                   >
-                    <ExternalLink className="mr-2" size={20} />
+                    <ExternalLink className="mr-2" size={24} />
                     Try Demo
+                  </motion.a>
+                )}
+                {project.links.googlePlay && (
+                  <motion.a
+                    href={project.links.googlePlay}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-[212px] h-[80px] flex items-center justify-center"
+                  >
+                    <img
+                      src="src/images/badges/googleplay.png"
+                      alt="Get it on Google Play"
+                      className="w-full h-full object-contain"
+                    />
+                  </motion.a>
+                )}
+                {project.links.ruStore && (
+                  <motion.a
+                    href={project.links.ruStore}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-[180px] h-[60px] flex items-center justify-center"
+                  >
+                    <img
+                      src="src/images/badges/rustore.svg"
+                      alt="Get it on RuStore"
+                      className="w-full h-full object-contain"
+                    />
                   </motion.a>
                 )}
               </div>
@@ -209,4 +285,4 @@ const TikTik = () => {
   );
 };
 
-export default TikTik;
+export default EverBook;

@@ -1,107 +1,103 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 
-interface Star {
-  id: number;
-  x: number;
-  y: number;
-  size: number;
-  duration: number;
-}
+const mysticalSymbols = [
+  '☥', '⛧', '⛤', '⚝', '☫', '⚯', '☤', '⚕', '☽', '☾', 
+  'ᚠ', 'ᚢ', 'ᚦ', 'ᚨ', 'ᚱ', 'ᚲ', 'ᚷ', 'ᚹ', 'ᚺ', 'ᚾ',
+  'ᛁ', 'ᛃ', 'ᛇ', 'ᛈ', 'ᛉ', 'ᛊ', 'ᛏ', 'ᛒ', 'ᛖ', 'ᛗ'
+];
 
-interface Rune {
-  id: number;
-  symbol: string;
-  x: number;
-  rotation: number;
-  duration: number;
-}
-
-const generateStars = (count: number): Star[] => {
-  return Array.from({ length: count }, (_, i) => ({
-    id: i,
-    x: Math.random() * 100,
-    y: -20,
-    size: Math.random() * 2 + 1,
-    duration: Math.random() * 2 + 2
-  }));
-};
-
-const runeSymbols = ['ᚠ', 'ᚢ', 'ᚦ', 'ᚨ', 'ᚱ', 'ᚲ', 'ᚷ', 'ᚹ', 'ᚺ', 'ᚾ'];
-
-const generateRunes = (count: number): Rune[] => {
-  return Array.from({ length: count }, (_, i) => ({
-    id: i,
-    symbol: runeSymbols[Math.floor(Math.random() * runeSymbols.length)],
-    x: Math.random() * 100,
-    rotation: Math.random() * 360,
-    duration: Math.random() * 5 + 5
-  }));
-};
-
-export const FallingStars: React.FC = () => {
-  const [stars] = React.useState(() => generateStars(15));
+const MysticalParticle = ({ delay = 0 }) => {
+  const randomSymbol = mysticalSymbols[Math.floor(Math.random() * mysticalSymbols.length)];
+  const startX = Math.random() * window.innerWidth;
+  const startY = Math.random() * window.innerHeight;
+  const duration = 8 + Math.random() * 4;
+  const rotateX = Math.random() * 1080 - 540;
+  const rotateY = Math.random() * 1080 - 540;
+  const rotateZ = Math.random() * 1080 - 540;
+  const direction = {
+    x: (Math.random() - 0.5) * 300,
+    y: (Math.random() - 0.5) * 300
+  };
+  const size = 0.8 + Math.random() * 0.8;
+  
+  const glowColors = [
+    'purple-500',
+    'indigo-500',
+    'violet-500',
+    'fuchsia-500'
+  ];
+  const glowColor = glowColors[Math.floor(Math.random() * glowColors.length)];
 
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden">
-      {stars.map((star) => (
-        <motion.div
-          key={star.id}
-          className="absolute bg-primary-end rounded-full"
-          style={{
-            left: `${star.x}%`,
-            width: star.size,
-            height: star.size * 3,
-          }}
-          initial={{ y: '-20%', opacity: 0 }}
-          animate={{
-            y: '120%',
-            opacity: [0, 1, 1, 0],
-            boxShadow: [
-              '0 0 0 0 rgba(239, 17, 111, 0)',
-              '0 0 4px 2px rgba(239, 17, 111, 0.6)',
-              '0 0 8px 4px rgba(239, 17, 111, 0.4)',
-              '0 0 0 0 rgba(239, 17, 111, 0)'
-            ]
-          }}
-          transition={{
-            duration: star.duration,
-            repeat: Infinity,
-            ease: "linear",
-            delay: Math.random() * 2
-          }}
-        />
-      ))}
+    <motion.div
+      initial={{ 
+        x: startX,
+        y: startY,
+        scale: 0,
+        opacity: 0,
+        rotateX: 0,
+        rotateY: 0,
+        rotateZ: 0,
+        perspective: 1000
+      }}
+      animate={{ 
+        x: [startX, startX + direction.x * 0.5, startX + direction.x],
+        y: [startY, startY + direction.y * 0.7, startY + direction.y],
+        scale: [0, size, size * 0.8, 0],
+        opacity: [0, 0.8, 0.4, 0],
+        rotateX: [0, rotateX * 0.5, rotateX],
+        rotateY: [0, rotateY * 0.5, rotateY],
+        rotateZ: [0, rotateZ * 0.5, rotateZ]
+      }}
+      transition={{
+        duration: duration,
+        delay: delay,
+        repeat: Infinity,
+        ease: [0.4, 0, 0.2, 1]
+      }}
+      style={{
+        position: 'fixed',
+        transformStyle: 'preserve-3d'
+      }}
+      className={`text-2xl text-${glowColor} pointer-events-none
+        flex items-center justify-center
+        filter drop-shadow-lg
+        before:content-[''] before:absolute before:inset-0
+        before:bg-${glowColor}/20 before:blur-sm
+        before:rounded-full before:scale-150`}
+    >
+      <motion.span
+        animate={{
+          opacity: [0.4, 1, 0.4],
+          textShadow: [
+            '0 0 10px currentColor',
+            '0 0 20px currentColor',
+            '0 0 10px currentColor'
+          ]
+        }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      >
+        {randomSymbol}
+      </motion.span>
+    </motion.div>
+  );
+};
+
+const MysticalBackground = () => {
+  return (
+    <div className="fixed inset-0 pointer-events-none">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-purple-900/10 via-transparent to-transparent opacity-30" />
+      <div className="absolute inset-0 overflow-hidden">
+        {[...Array(30)].map((_, i) => (
+          <MysticalParticle key={i} delay={i * 0.2} />
+        ))}
+      </div>
     </div>
   );
 };
 
-export const FloatingRunes: React.FC = () => {
-  const [runes] = React.useState(() => generateRunes(10));
-
-  return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden">
-      {runes.map((rune) => (
-        <motion.div
-          key={rune.id}
-          className="absolute text-2xl text-primary-end opacity-30"
-          style={{ left: `${rune.x}%` }}
-          initial={{ y: '120%', rotate: rune.rotation }}
-          animate={{
-            y: '-20%',
-            rotate: rune.rotation + 360,
-            opacity: [0.3, 0.6, 0.3]
-          }}
-          transition={{
-            duration: rune.duration,
-            repeat: Infinity,
-            ease: "linear",
-            delay: Math.random() * 5
-          }}
-        >
-          {rune.symbol}
-        </motion.div>
-      ))}
-    </div>
-  );
-};
+export default MysticalBackground;

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Github, ExternalLink, Skull, Code2, Eye, Feather } from 'lucide-react';
+import { useState } from 'react';
+import { useCallback } from 'react';
+import { motion } from 'framer-motion';
+import { Github, ExternalLink, Skull, Code2, Eye } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 interface TeamMember {
@@ -78,18 +79,31 @@ const mysticalSymbols = [
   'ᛁ', 'ᛃ', 'ᛇ', 'ᛈ', 'ᛉ', 'ᛊ', 'ᛏ', 'ᛒ', 'ᛖ', 'ᛗ'
 ];
 
+const glowColors = [
+  'text-purple-500',
+  'text-indigo-500',
+  'text-violet-500',
+  'text-fuchsia-500'
+];
+
 const MysticalParticle = ({ delay = 0 }) => {
+  const getRandomInRange = useCallback((min: number, max: number) => {
+    return Math.random() * (max - min) + min;
+  }, []);
+
   const randomSymbol = mysticalSymbols[Math.floor(Math.random() * mysticalSymbols.length)];
-  const startX = Math.random() * window.innerWidth;
-  const startY = Math.random() * window.innerHeight;
-  const duration = 8 + Math.random() * 4;
-  const rotateX = Math.random() * 720 - 360;
-  const rotateY = Math.random() * 720 - 360;
-  const rotateZ = Math.random() * 720 - 360;
-  const direction = {
-    x: (Math.random() - 0.5) * 200,
-    y: (Math.random() - 0.5) * 200
-  };
+  const glowColor = glowColors[Math.floor(Math.random() * glowColors.length)];
+  
+  // Позиционирование и направление
+  const startX = getRandomInRange(0, window.innerWidth);
+  const startY = -50; // Начинаем чуть выше экрана
+  const directionX = getRandomInRange(-100, 100); // Небольшое отклонение влево или вправо
+  const speed = getRandomInRange(15, 25); // Скорость падения
+  const endY = window.innerHeight + 50; // Заканчиваем чуть ниже экрана
+  
+  // Вращение и размер
+  const rotate = getRandomInRange(-180, 180);
+  const size = getRandomInRange(0.8, 1.2);
   
   return (
     <motion.div
@@ -98,34 +112,54 @@ const MysticalParticle = ({ delay = 0 }) => {
         y: startY,
         scale: 0,
         opacity: 0,
-        rotateX: 0,
-        rotateY: 0,
-        rotateZ: 0,
-        perspective: 1000
+        rotate: 0
       }}
       animate={{ 
-        x: startX + direction.x,
-        y: startY + direction.y,
-        scale: [0, 1, 0.8, 0],
-        opacity: [0, 0.8, 0.4, 0],
-        rotateX: rotateX,
-        rotateY: rotateY,
-        rotateZ: rotateZ
+        x: startX + directionX,
+        y: endY,
+        scale: [0, size, size, 0],
+        opacity: [0, 0.7, 0.7, 0],
+        rotate: rotate
       }}
       transition={{
-        duration: duration,
-        delay: delay,
+        duration: speed,
+        delay,
         repeat: Infinity,
         ease: "linear"
       }}
       style={{
         position: 'fixed',
-        transformStyle: 'preserve-3d'
+        pointerEvents: 'none'
       }}
-      className="text-2xl text-purple-500/50 pointer-events-none"
+      className={`text-2xl ${glowColor} flex items-center justify-center`}
     >
-      {randomSymbol}
+      <motion.span
+        animate={{
+          opacity: [0.4, 1, 0.4]
+        }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+        className="filter drop-shadow-[0_0_8px_currentColor]"
+      >
+        {randomSymbol}
+      </motion.span>
     </motion.div>
+  );
+};
+
+const MysticalBackground = () => {
+  return (
+    <div className="fixed inset-0 pointer-events-none">
+      <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 via-transparent to-transparent opacity-30" />
+      <div className="absolute inset-0 overflow-hidden">
+        {Array.from({ length: 20 }).map((_, i) => (
+          <MysticalParticle key={i} delay={i * 0.3} />
+        ))}
+      </div>
+    </div>
   );
 };
 
@@ -199,13 +233,7 @@ const Sectants = () => {
   
   return (
     <div className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black relative overflow-hidden">
-      <div className="fixed inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-purple-900/10 via-transparent to-transparent opacity-30" />
-      
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        {[...Array(30)].map((_, i) => (
-          <MysticalParticle key={i} delay={i * 0.2} />
-        ))}
-      </div>
+      <MysticalBackground />
 
       <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
         <div className="absolute inset-0 flex items-center justify-center opacity-5">
@@ -269,114 +297,114 @@ const Sectants = () => {
       </section>
 
       <section className="relative py-20 px-4">
-        <div className="max-w-7xl mx-auto">
-          <motion.h2 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-purple-500 to-indigo-500 bg-clip-text text-transparent"
-          >
-            {t('sectants.members.title')}
-          </motion.h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {teamMembers.map((member, index) => (
-              <motion.div
-                key={member.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-                className="relative group"
-                onMouseEnter={() => setActiveId(member.id)}
-                onMouseLeave={() => setActiveId(null)}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 to-indigo-900/20 group-hover:opacity-100 opacity-0 transition-opacity duration-500 rounded-xl blur-xl" />
-                
-                <div className="relative bg-gray-900/90 backdrop-blur-sm border border-purple-900/20 rounded-xl p-8 transition-all duration-500 group-hover:transform group-hover:scale-[1.02]">
-                  <div className="flex items-start gap-6">
-                    <MemberAvatar image={member.image} isRitualMaster={member.isRitualMaster} />
-
-                    <div>
-                      <motion.h3 
-                        className="text-2xl font-bold bg-gradient-to-r from-gray-100 to-gray-100 group-hover:from-purple-500 group-hover:to-indigo-500 bg-clip-text text-transparent transition-all duration-300"
-                        whileHover={{ x: 5 }}
+                <div className="max-w-7xl mx-auto">
+                  <motion.h2 
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-purple-500 to-indigo-500 bg-clip-text text-transparent"
+                  >
+                    {t('sectants.members.title')}
+                  </motion.h2>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {teamMembers.map((member, index) => (
+                      <motion.div
+                        key={member.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.2 }}
+                        className="relative group"
+                        onMouseEnter={() => setActiveId(member.id)}
+                        onMouseLeave={() => setActiveId(null)}
                       >
-                        {t(member.name)}
-                      </motion.h3>
-                      <p className="text-gray-400 italic mb-4">{t(member.title)}</p>
-                      <div className="flex gap-3">
-                        {member.links.github && (
-                          <motion.a
-                            href={member.links.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            whileHover={{ scale: 1.1, rotate: 5 }}
-                            className="text-gray-400 hover:text-purple-500 transition-colors"
-                          >
-                            <Github size={20} />
-                          </motion.a>
-                        )}
-                        {member.links.website && (
-                          <motion.a
-                            href={member.links.website}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            whileHover={{ scale: 1.1, rotate: -5 }}
-                            className="text-gray-400 hover:text-purple-500 transition-colors"
-                          >
-                            <ExternalLink size={20} />
-                          </motion.a>
-                        )}
-                      </div>
-                    </div>
-                  </div>
+                        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 to-indigo-900/20 group-hover:opacity-100 opacity-0 transition-opacity duration-500 rounded-xl blur-xl" />
+                        
+                        <div className="relative bg-gray-900/90 backdrop-blur-sm border border-purple-900/20 rounded-xl p-8 transition-all duration-500 group-hover:transform group-hover:scale-[1.02]">
+                          <div className="flex items-start gap-6">
+                            <MemberAvatar image={member.image} isRitualMaster={member.isRitualMaster} />
 
-                  <p className="mt-4 text-gray-400 italic leading-relaxed">
-                    {t(member.description)}
-                  </p>
+                            <div>
+                              <motion.h3 
+                                className="text-2xl font-bold bg-gradient-to-r from-gray-100 to-gray-100 group-hover:from-purple-500 group-hover:to-indigo-500 bg-clip-text text-transparent transition-all duration-300"
+                                whileHover={{ x: 5 }}
+                              >
+                                {t(member.name)}
+                              </motion.h3>
+                              <p className="text-gray-400 italic mb-4">{t(member.title)}</p>
+                              <div className="flex gap-3">
+                                {member.links.github && (
+                                  <motion.a
+                                    href={member.links.github}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    whileHover={{ scale: 1.1, rotate: 5 }}
+                                    className="text-gray-400 hover:text-purple-500 transition-colors"
+                                  >
+                                    <Github size={20} />
+                                  </motion.a>
+                                )}
+                                {member.links.website && (
+                                  <motion.a
+                                    href={member.links.website}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    whileHover={{ scale: 1.1, rotate: -5 }}
+                                    className="text-gray-400 hover:text-purple-500 transition-colors"
+                                  >
+                                    <ExternalLink size={20} />
+                                  </motion.a>
+                                )}
+                              </div>
+                            </div>
+                          </div>
 
-                  <div className="mt-6">
-                    <h4 className="text-lg font-semibold text-gray-200 mb-2 flex items-center gap-2">
-                      <Code2 className="w-4 h-4" />
-                      {t('sectants.members.skills')}
-                    </h4>
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {member.skills.map((skill) => (
-                        <SkillTag key={skill} skill={t(skill)} />
-                      ))}
-                    </div>
+                          <p className="mt-4 text-gray-400 italic leading-relaxed">
+                            {t(member.description)}
+                          </p>
 
-                    <h4 className="text-lg font-semibold text-gray-200 mb-2 flex items-center gap-2">
-                      <Skull className="w-4 h-4" />
-                      {t('sectants.members.projects')}
-                    </h4>
-                    <div className="space-y-4">
-                      {member.projects.map((project) => (
-                        <motion.a
-                          key={project.name}
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="block p-4 rounded-lg bg-gray-800/50 hover:bg-gray-700/50 transition-colors group/project relative"
-                          whileHover={{ x: 5 }}
-                        >
-                          <ProjectStatusIndicator status={project.status} />
-                          <h5 className="text-gray-200 font-medium mb-1 group-hover/project:text-purple-500 transition-colors">
-                            {t(project.name)}
-                          </h5>
-                          <p className="text-sm text-gray-400">{t(project.description)}</p>
-                        </motion.a>
-                      ))}
-                    </div>
+                          <div className="mt-6">
+                            <h4 className="text-lg font-semibold text-gray-200 mb-2 flex items-center gap-2">
+                              <Code2 className="w-4 h-4" />
+                              {t('sectants.members.skills')}
+                            </h4>
+                            <div className="flex flex-wrap gap-2 mb-6">
+                              {member.skills.map((skill) => (
+                                <SkillTag key={skill} skill={t(skill)} />
+                              ))}
+                            </div>
+
+                            <h4 className="text-lg font-semibold text-gray-200 mb-2 flex items-center gap-2">
+                              <Skull className="w-4 h-4" />
+                              {t('sectants.members.projects')}
+                            </h4>
+                            <div className="space-y-4">
+                              {member.projects.map((project) => (
+                                <motion.a
+                                  key={project.name}
+                                  href={project.link}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="block p-4 rounded-lg bg-gray-800/50 hover:bg-gray-700/50 transition-colors group/project relative"
+                                  whileHover={{ x: 5 }}
+                                >
+                                  <ProjectStatusIndicator status={project.status} />
+                                  <h5 className="text-gray-200 font-medium mb-1 group-hover/project:text-purple-500 transition-colors">
+                                    {t(project.name)}
+                                  </h5>
+                                  <p className="text-sm text-gray-400">{t(project.description)}</p>
+                                </motion.a>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-    </div>
-  );
+              </section>
+            </div>
+          );
 };
 
 export default Sectants;
