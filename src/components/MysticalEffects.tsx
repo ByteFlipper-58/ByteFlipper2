@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useCallback } from 'react';
 
 const mysticalSymbols = [
   '☥', '⛧', '⛤', '⚝', '☫', '⚯', '☤', '⚕', '☽', '☾', 
@@ -6,28 +7,33 @@ const mysticalSymbols = [
   'ᛁ', 'ᛃ', 'ᛇ', 'ᛈ', 'ᛉ', 'ᛊ', 'ᛏ', 'ᛒ', 'ᛖ', 'ᛗ'
 ];
 
-const MysticalParticle = ({ delay = 0 }) => {
-  const randomSymbol = mysticalSymbols[Math.floor(Math.random() * mysticalSymbols.length)];
-  const startX = Math.random() * window.innerWidth;
-  const startY = Math.random() * window.innerHeight;
-  const duration = 8 + Math.random() * 4;
-  const rotateX = Math.random() * 1080 - 540;
-  const rotateY = Math.random() * 1080 - 540;
-  const rotateZ = Math.random() * 1080 - 540;
-  const direction = {
-    x: (Math.random() - 0.5) * 300,
-    y: (Math.random() - 0.5) * 300
-  };
-  const size = 0.8 + Math.random() * 0.8;
-  
-  const glowColors = [
-    'purple-500',
-    'indigo-500',
-    'violet-500',
-    'fuchsia-500'
-  ];
-  const glowColor = glowColors[Math.floor(Math.random() * glowColors.length)];
+const glowColors = [
+  'text-purple-500',
+  'text-indigo-500',
+  'text-violet-500',
+  'text-fuchsia-500'
+];
 
+interface MysticalParticleProps {
+  delay?: number;
+}
+
+export const MysticalParticle = ({ delay = 0 }: MysticalParticleProps) => {
+  const getRandomInRange = useCallback((min: number, max: number) => {
+    return Math.random() * (max - min) + min;
+  }, []);
+
+  const randomSymbol = mysticalSymbols[Math.floor(Math.random() * mysticalSymbols.length)];
+  const glowColor = glowColors[Math.floor(Math.random() * glowColors.length)];
+  
+  const startX = getRandomInRange(0, window.innerWidth);
+  const startY = -50;
+  const directionX = getRandomInRange(-100, 100);
+  const speed = getRandomInRange(15, 25);
+  const endY = window.innerHeight + 50;
+  const rotate = getRandomInRange(-180, 180);
+  const size = getRandomInRange(0.8, 1.2);
+  
   return (
     <motion.div
       initial={{ 
@@ -35,51 +41,37 @@ const MysticalParticle = ({ delay = 0 }) => {
         y: startY,
         scale: 0,
         opacity: 0,
-        rotateX: 0,
-        rotateY: 0,
-        rotateZ: 0,
-        perspective: 1000
+        rotate: 0
       }}
       animate={{ 
-        x: [startX, startX + direction.x * 0.5, startX + direction.x],
-        y: [startY, startY + direction.y * 0.7, startY + direction.y],
-        scale: [0, size, size * 0.8, 0],
-        opacity: [0, 0.8, 0.4, 0],
-        rotateX: [0, rotateX * 0.5, rotateX],
-        rotateY: [0, rotateY * 0.5, rotateY],
-        rotateZ: [0, rotateZ * 0.5, rotateZ]
+        x: startX + directionX,
+        y: endY,
+        scale: [0, size, size, 0],
+        opacity: [0, 0.7, 0.7, 0],
+        rotate: rotate
       }}
       transition={{
-        duration: duration,
-        delay: delay,
+        duration: speed,
+        delay,
         repeat: Infinity,
-        ease: [0.4, 0, 0.2, 1]
+        ease: "linear"
       }}
       style={{
         position: 'fixed',
-        transformStyle: 'preserve-3d'
+        pointerEvents: 'none'
       }}
-      className={`text-2xl text-${glowColor} pointer-events-none
-        flex items-center justify-center
-        filter drop-shadow-lg
-        before:content-[''] before:absolute before:inset-0
-        before:bg-${glowColor}/20 before:blur-sm
-        before:rounded-full before:scale-150`}
+      className={`text-2xl ${glowColor} flex items-center justify-center`}
     >
       <motion.span
         animate={{
-          opacity: [0.4, 1, 0.4],
-          textShadow: [
-            '0 0 10px currentColor',
-            '0 0 20px currentColor',
-            '0 0 10px currentColor'
-          ]
+          opacity: [0.4, 1, 0.4]
         }}
         transition={{
           duration: 2,
           repeat: Infinity,
           ease: "easeInOut"
         }}
+        className="filter drop-shadow-[0_0_8px_currentColor]"
       >
         {randomSymbol}
       </motion.span>
@@ -87,17 +79,30 @@ const MysticalParticle = ({ delay = 0 }) => {
   );
 };
 
-const MysticalBackground = () => {
+export const MysticalBackground = () => {
   return (
     <div className="fixed inset-0 pointer-events-none">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-purple-900/10 via-transparent to-transparent opacity-30" />
+      <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 via-transparent to-transparent opacity-30" />
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(30)].map((_, i) => (
-          <MysticalParticle key={i} delay={i * 0.2} />
+        {Array.from({ length: 20 }).map((_, i) => (
+          <MysticalParticle key={i} delay={i * 0.3} />
         ))}
       </div>
     </div>
   );
 };
 
-export default MysticalBackground;
+export const RitualMark = () => (
+  <motion.div
+    className="absolute -inset-1 bg-gradient-to-r from-purple-600/20 to-indigo-600/20 rounded-lg z-0"
+    animate={{
+      scale: [1, 1.2, 1],
+      opacity: [0.5, 0.8, 0.5],
+    }}
+    transition={{
+      duration: 3,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }}
+  />
+);
