@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, Twitter, Code, Terminal, PenTool as Tool, Palette } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -45,24 +44,32 @@ const About = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
+        staggerChildren: 0.1,
+        delayChildren: 0.1
       }
     }
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.5
+      }
+    }
   };
 
   return (
-    <div className="min-h-screen pt-20 px-4 bg-gradient-to-b from-dark-100 to-dark-200">
-      <div className="max-w-4xl mx-auto">
+    <div className="py-28 px-4 min-h-screen bg-gradient-to-b from-dark-100 to-dark-200">
+      <div className="max-w-4xl mx-auto space-y-20">
         {/* Hero Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16 relative"
+          transition={{ duration: 0.6 }}
+          className="text-center relative"
         >
           <div className="relative w-32 h-32 mx-auto mb-8">
             <motion.div
@@ -84,7 +91,7 @@ const About = () => {
             />
           </div>
           
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary-start to-primary-end bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 pb-2 bg-gradient-to-r from-primary-start to-primary-end bg-clip-text text-transparent">
             ByteFlipper
           </h1>
           <p className="text-light-300 text-lg mb-8 max-w-2xl mx-auto">
@@ -109,15 +116,15 @@ const About = () => {
 
         {/* Skills Section */}
         <motion.div
+          key={t('about.skills.frontend')} // Add key to force re-render on language change
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16"
+          animate="visible"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8"
         >
           {skills.map((skillGroup, index) => (
             <motion.div
-              key={skillGroup.category}
+              key={`${skillGroup.category}-${index}`}
               variants={itemVariants}
               className="relative group"
             >
@@ -132,9 +139,9 @@ const About = () => {
                   </h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  {skillGroup.items.map((skill) => (
+                  {skillGroup.items.map((skill, skillIndex) => (
                     <motion.span
-                      key={skill}
+                      key={`${skill}-${skillIndex}`}
                       whileHover={{ scale: 1.05 }}
                       className="px-3 py-1 bg-dark-300 rounded-full text-light-200 text-sm border border-dark-400 group-hover:border-primary-end/20 transition-colors"
                     >
@@ -150,9 +157,9 @@ const About = () => {
         {/* Quote Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16 relative"
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center relative"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-primary-start/10 to-primary-end/10 rounded-xl blur-xl" />
           <blockquote className="relative bg-dark-200 p-8 rounded-xl border border-dark-300">
