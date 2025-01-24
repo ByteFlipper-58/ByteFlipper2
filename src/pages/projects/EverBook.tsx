@@ -33,6 +33,7 @@ import { motion } from 'framer-motion';
 import { Github, ExternalLink, ArrowLeft, Video, Users, MessageSquare, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import ScreenshotGallery from '../../components/ScreenshotGallery';
 
 const EverBook = () => {
   const project: Project = {
@@ -55,7 +56,7 @@ const EverBook = () => {
     ],
     screenshots: [
       {
-        url: "/images/everbook/ng1.p",
+        url: "/images/everbook/1.png",
         alt: "EverBook Feed Interface"
       },
       {
@@ -79,6 +80,12 @@ const EverBook = () => {
       //{ icon: Heart, label: "Likes", value: "10M+" }
     ]
   };
+
+  const basicScreenshots = [
+    { url: "/images/everbook/1.png", alt: "Main Screen" },
+    { url: "/images/everbook/2.png", alt: "Detail View" },
+    { url: "/images/everbook/3.png", alt: "Settings" }
+  ];
 
   return (
     <>
@@ -256,29 +263,9 @@ const EverBook = () => {
         </section>
 
         {/* Screenshots Section */}
-        <section className="py-16 px-4 bg-dark-200 border-y border-dark-300">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-2xl font-bold mb-8 text-light-100">Screenshots</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {project.screenshots.map((screenshot, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -5 }}
-                  className="rounded-lg overflow-hidden border border-dark-300"
-                >
-                  <img
-                    src={screenshot.url}
-                    alt={screenshot.alt}
-                    className="w-full h-full object-cover"
-                  />
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <ScreenshotGallery 
+        screenshots={basicScreenshots}
+      />
       </div>
     </>
   );

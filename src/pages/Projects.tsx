@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import ProjectCard from '../components/ProjectCard';
 import { projectsData } from '../data/projectsData';
 
-const categories = ['All', 'Android App', 'Web App', 'Finance', 'AI/ML'];
+const categories = ['All', 'android_apps', 'web_apps'];
 
 const Projects = () => {
   const { t, i18n } = useTranslation();

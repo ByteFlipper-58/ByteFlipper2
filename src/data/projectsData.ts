@@ -7,7 +7,7 @@ export const projectsData: Record<string, Project[]> = {
       title: 'EverBook',
       description: 'EverBook — a convenient eBook reader supporting multiple book formats.',
       image: '/images/everbook/banner.png',
-      category: 'Android App',
+      category: 'android_apps',
       technologies: ['Jetpack Compose', 'MVVM', 'MongoDB'],
       links: {
         github: 'https://github.com/ByteFlipper-58/book-story'
@@ -18,7 +18,7 @@ export const projectsData: Record<string, Project[]> = {
       title: 'FF Sensitivities',
       description: 'Sensitivity settings for smooth gameplay and optimal performance!',
       image: '/images/ffsensitivities/banner.png',
-      category: 'Android App',
+      category: 'android_apps',
       technologies: ['Jetpack Compose', 'MVVM', 'React'],
       links: {
         github: 'https://github.com/ByteFlipper-58/FFSensitivities2'
@@ -32,7 +32,7 @@ export const projectsData: Record<string, Project[]> = {
       title: 'EverBook',
       description: 'EverBook — удобный ридер, поддерживающий множество форматов электронных книг.',
       image: '/images/everbook/banner.png',
-      category: 'Android App',
+      category: 'android_apps',
       technologies: ['Jetpack Compose', 'Node.js', 'MongoDB'],
       links: {
         github: 'https://github.com/ByteFlipper-58/book-story'
@@ -43,7 +43,7 @@ export const projectsData: Record<string, Project[]> = {
       title: 'FF Sensitivities',
       description: 'Настройки чувствительности для более точных хедшотов!',
       image: '/images/ffsensitivities/banner.png',
-      category: 'Android App',
+      category: 'android_apps',
       technologies: ['Jetpack Compose', 'MVVM', 'React'],
       links: {
         github: 'https://github.com/ByteFlipper-58/FFSensitivities2'

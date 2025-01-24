@@ -38,10 +38,8 @@ export default {
     },
     categories: {
       all: 'Все',
-      'android app': 'Android приложения',
-      'web app': 'Веб-приложения',
-      finance: 'Финансы',
-      'ai/ml': 'ИИ/МО'
+      android_apps: 'Android приложения',
+      web_apps: 'Веб-приложения'
     },
     noResults: 'Проекты по заданным критериям не найдены',
     card: {
@@ -55,40 +53,6 @@ export default {
       title: 'Наш Священный Орден',
       skills: 'Мистические Искусства',
       projects: 'Запретные Работы'
-    },
-    dark_title: {
-      archimage: 'Архимаг',
-      architect: 'Системный Архитектор',
-      technomancer: 'Техномант',
-      frontend: 'Мистик Фронтенда'
-    },
-    dark_description: {
-      archimage: 'Мастер системной архитектуры и хранитель древней мудрости развертывания.',
-      technomancer: 'Ткач интерактивных впечатлений и хранитель пользовательских интерфейсов.'
-    },
-    dark_skills: {
-      architecture: 'Системная Архитектура',
-      microservices: 'Микросервисы',
-      legacy: 'Мастерство Легаси Кода',
-      cicd: 'CI/CD Ритуалы',
-      state: 'Управление Состоянием',
-      dom: 'DOM Манипуляции',
-      reactive: 'Реактивное Программирование',
-      patterns: 'Паттерны Проектирования'
-    },
-    dark_projects: {
-      portal: {
-        title: 'Портал',
-        description: 'Врата для бесшовной коммуникации микросервисов'
-      },
-      reaper: {
-        title: 'Жнец Кода',
-        description: 'Инструмент трансформации легаси кода'
-      },
-      whispers: {
-        title: 'Цифровой Шёпот',
-        description: 'Платформа для совместного редактирования в реальном времени'
-      }
     }
   },
   about: {
@@ -101,7 +65,7 @@ export default {
       tools: 'Инструменты',
       other: 'Другое'
     },
-    quote: 'Лучший способ предсказать будущее - создать его.'
+    quote: 'Из пепла, да восстанем мы'
   },
   contact: {
     title: 'Связаться',
@@ -109,8 +73,8 @@ export default {
     description: 'Не стесняйтесь обращаться через любой из каналов связи ниже.',
     location: {
       title: 'Локация и время',
-      place: 'Сан-Франциско, Калифорния',
-      timezone: 'PST (UTC-8)'
+      place: 'Biała Podlaska, PL',
+      timezone: 'CET (GMT+1)'
     },
     social: {
       title: 'Социальные сети',

@@ -3,18 +3,18 @@ import { TeamMember } from '../types/project';
 export const teamMembersData: Record<string, TeamMember[]> = {
   en: [
     {
-      id: "shadow-master",
+      id: "kirbo",
       name: "Kirbo",
-      title: "dark_title.architect",
-      image: "https://images.unsplash.com/photo-1519834785169-98be25ec3f84?w=400&h=400&fit=crop",
-      description: "dark_description.archimage",
+      title: "Programmer and musician. ",
+      image: "https://avatars.githubusercontent.com/u/62571450?v=4",
+      description: "Programmer and musician. Co-founder of JVMFrog (now @intkgc).",
       isRitualMaster: false,
-      skills: ["dark_skills.architecture", "dark_skills.microservices", "dark_skills.legacy", "dark_skills.cicd"],
+      skills: ["Java", "Rust", "dark_skills.legacy", "dark_skills.cicd"],
       projects: [
         {
-          name: "LOL",
-          description: "dark_projects.portal.description",
-          link: "https://github.com/dark-sect/portal",
+          name: "SectWiki",
+          description: "Вики Секты",
+          link: "https://github.com/intkgc/sectwiki",
           status: 'active'
         },
         {
@@ -25,8 +25,8 @@ export const teamMembersData: Record<string, TeamMember[]> = {
         }
       ],
       links: {
-        github: "https://github.com/archimage",
-        website: "https://dark-sect.dev"
+        github: "https://github.com/kirbodevv",
+        website: "https://wiki.intkgc.xyz/members/kirbo"
       }
     },
     {

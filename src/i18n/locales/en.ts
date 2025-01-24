@@ -38,10 +38,8 @@ export default {
     },
     categories: {
       all: 'All',
-      'android app': 'Android App',
-      'web app': 'Web App',
-      finance: 'Finance',
-      'ai/ml': 'AI/ML'
+      android_apps: 'Android Apps',
+      web_apps: 'Web Apps'
     },
     noResults: 'No projects found matching your criteria',
     card: {
@@ -55,40 +53,6 @@ export default {
       title: 'Our Sacred Order',
       skills: 'Mystical Arts',
       projects: 'Forbidden Works'
-    },
-    dark_title: {
-      archimage: 'The Archimage',
-      architect: 'System Architect',
-      technomancer: 'The Technomancer',
-      frontend: 'Frontend Mystic'
-    },
-    dark_description: {
-      archimage: 'Master of system architecture and keeper of ancient deployment wisdom.',
-      technomancer: 'Weaver of interactive experiences and guardian of user interfaces.'
-    },
-    dark_skills: {
-      architecture: 'System Architecture',
-      microservices: 'Microservices',
-      legacy: 'Legacy Code Mastery',
-      cicd: 'CI/CD Rituals',
-      state: 'State Management',
-      dom: 'DOM Manipulation',
-      reactive: 'Reactive Programming',
-      patterns: 'Design Patterns'
-    },
-    dark_projects: {
-      portal: {
-        title: 'The Portal',
-        description: 'A gateway to seamless microservices communication'
-      },
-      reaper: {
-        title: 'Code Reaper',
-        description: 'Legacy code transformation tool'
-      },
-      whispers: {
-        title: 'Digital Whispers',
-        description: 'Real-time collaborative editing platform'
-      }
     }
   },
   about: {
@@ -109,8 +73,8 @@ export default {
     description: 'Feel free to reach out through any of the channels below.',
     location: {
       title: 'Location & Time',
-      place: 'San Francisco, CA',
-      timezone: 'PST (UTC-8)'
+      place: 'Biała Podlaska, PL',
+      timezone: 'CET (GMT+1)'
     },
     social: {
       title: 'Social Links',
