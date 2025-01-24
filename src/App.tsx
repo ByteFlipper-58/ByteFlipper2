@@ -8,6 +8,7 @@ import Sectants from './pages/Sectants';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import EverBook from './pages/projects/EverBook';
+import FFSensitivities from './pages/projects/FFSensitivities';
 import { usePageTracking } from './firebase/analytics';
 import './i18n/config';
 
@@ -42,6 +43,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/everbook" element={<EverBook />} />
+            <Route path="/ffsensitivities" element={<FFSensitivities />} />
             <Route path="*" element={<Home />} />
           </Routes>
         </main>

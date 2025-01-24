@@ -37,47 +37,46 @@ import { Helmet } from 'react-helmet';
 const EverBook = () => {
   const project: Project = {
     title: "EverBook",
-    description: "A modern social media platform for sharing short-form videos with interactive features and real-time engagement.",
+    description: "EverBook — a convenient eBook reader supporting multiple book formats.",
     icon: "/images/everbook/logo.png",
     technologies: [
       "Jetpack Compose", "Kotlin", "MVVM", "Room", "Firebase", "Material You",
       "Retrofit2", "OkHttp3", "GSON", "Moshi", "Datastore Preferences"
     ],
     features: [
-      "Video upload and processing with FFmpeg",
-      "Real-time comments and likes",
-      "User profiles and following system",
-      "Video recommendations algorithm",
-      "Interactive video player with gestures",
-      "Social sharing and deep linking",
-      "Push notifications",
-      "Analytics dashboard"
+      "Support for popular formats: PDF, EPUB, TXT, FB2 and others 📄",
+      "Full reader customization: choose the perfect fonts, color themes, and other settings for comfort 👓",
+      "Organized library: sort by categories and support for chapters 📚",
+      "Personalized settings: create your unique reading experience with custom colors and themes 🎨",
+      "Instant translation: double-click to translate text using an external translator 🌍",
+      "Tablet optimization: interface tailored for larger screens 📱",
+      "Simple and intuitive interface: read with ease, no complicated settings 🔧",
+      "Automatic updates: the app will notify you of new versions on startup 🔄"
     ],
     screenshots: [
       {
-        url: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&q=80",
+        url: "/images/everbook/ng1.p",
         alt: "EverBook Feed Interface"
       },
       {
-        url: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&q=80",
+        url: "/images/everbook/2.png",
         alt: "Video Creation Studio"
       },
       {
-        url: "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=800&q=80",
+        url: "/images/everbook/3.png",
         alt: "User Profile View"
       }
     ],
     links: {
-      github: "https://github.com/byteflipper/EverBook",
-      live: "https://EverBook-demo.web.app",
-      googlePlay: "https://play.google.com/store/apps/details?id=com.EverBook",
-      ruStore: "https://apps.rustore.ru/app/com.EverBook"
+      github: "https://github.com/byteflipper-58/book-story",
+      googlePlay: "https://play.google.com/store/apps/details?id=com.byteflipper.everbook",
+      ruStore: "https://apps.rustore.ru/app/com.byteflipper.everbook"
     },
     metrics: [
-      { icon: Video, label: "1M+ Videos", value: "1,234,567" },
-      { icon: Users, label: "Active Users", value: "500K+" },
-      { icon: MessageSquare, label: "Comments", value: "2.5M+" },
-      { icon: Heart, label: "Likes", value: "10M+" }
+      //{ icon: Video, label: "1M+ Videos", value: "1,234,567" },
+      //{ icon: Users, label: "Active Users", value: "500K+" },
+      //{ icon: MessageSquare, label: "Comments", value: "2.5M+" },
+      //{ icon: Heart, label: "Likes", value: "10M+" }
     ]
   };
 
@@ -190,7 +189,7 @@ const EverBook = () => {
         </section>
 
         {/* Metrics Section */}
-        <section className="py-16 px-4 bg-dark-100">
+        {/*<section className="py-16 px-4 bg-dark-100">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {project.metrics.map((metric, index) => (
@@ -209,7 +208,7 @@ const EverBook = () => {
               ))}
             </div>
           </div>
-        </section>
+        </section>*?/}
 
         {/* Features Section */}
         <section className="py-16 px-4">

@@ -1,8 +1,13 @@
-import { analytics } from './config';
-import { logEvent as firebaseLogEvent, AnalyticsCallOptions } from 'firebase/analytics';
+import { useEffect } from 'react';
+import { 
+  Analytics, 
+  logEvent as firebaseLogEvent, 
+  setUserId, 
+  setUserProperties as firebaseSetUserProperties 
+} from 'firebase/analytics';
 
-// Типы событий аналитики
-export type AnalyticsEvent = 
+// Comprehensive Event Types
+export type StandardAnalyticsEvent = 
   | 'page_view'
   | 'login'
   | 'sign_up'
@@ -12,57 +17,104 @@ export type AnalyticsEvent =
   | 'download_app'
   | 'external_link_click';
 
-// Интерфейс для параметров событий
+// Custom Event Type for flexibility
+export type CustomAnalyticsEvent = string;
+
+// Combined Event Type
+export type AnalyticsEvent = StandardAnalyticsEvent | CustomAnalyticsEvent;
+
+// Event Parameters Interface
 export interface EventParams {
-  [key: string]: any;
+  [key: string]: string | number | boolean | undefined;
+}
+
+// Analytics Service Class
+export class AnalyticsService {
+  private analytics: Analytics | null;
+
+  constructor(analyticsInstance: Analytics | null) {
+    this.analytics = analyticsInstance;
+  }
+
+  /**
+   * Log an analytics event
+   * @param eventName - Name of the event
+   * @param eventParams - Event parameters
+   */
+  logEvent(
+    eventName: AnalyticsEvent, 
+    eventParams?: EventParams
+  ): void {
+    try {
+      if (this.analytics) {
+        firebaseLogEvent(
+          this.analytics, 
+          eventName, 
+          eventParams || {}
+        );
+      } else {
+        console.debug('[Analytics Debug]', eventName, eventParams);
+      }
+    } catch (error) {
+      console.error('Analytics Event Error:', error);
+    }
+  }
+
+  /**
+   * Set user identifier
+   * @param userId - Unique user identifier
+   */
+  setUserId(userId: string): void {
+    try {
+      if (this.analytics) {
+        setUserId(this.analytics, userId);
+      }
+    } catch (error) {
+      console.error('Set User ID Error:', error);
+    }
+  }
+
+  /**
+   * Set custom user properties
+   * @param properties - User properties object
+   */
+  setUserProperties(properties: Record<string, string>): void {
+    try {
+      if (this.analytics) {
+        firebaseSetUserProperties(this.analytics, properties);
+      }
+    } catch (error) {
+      console.error('Set User Properties Error:', error);
+    }
+  }
 }
 
 /**
- * Логирует событие аналитики
- * @param eventName - Название события
- * @param eventParams - Параметры события (опционально)
- * @param options - Опции вызова аналитики (опционально)
+ * Page Tracking Hook
+ * @returns Tracking function
  */
-export const logEvent = (
-  eventName: AnalyticsEvent,
-  eventParams?: EventParams,
-  options?: AnalyticsCallOptions
-) => {
-  if (analytics) {
-    firebaseLogEvent(analytics, eventName, eventParams, options);
-  } else {
-    // В режиме разработки или если аналитика не поддерживается
-    console.debug('[Analytics]', eventName, eventParams);
-  }
-};
-
-/**
- * Устанавливает пользовательские свойства
- * @param userId - ID пользователя
- * @param properties - Пользовательские свойства
- */
-export const setUserProperties = (userId: string, properties: { [key: string]: any }) => {
-  if (analytics) {
-    // Устанавливаем ID пользователя
-    firebaseLogEvent(analytics, 'set_user_id', { user_id: userId });
-    
-    // Устанавливаем пользовательские свойства
-    Object.entries(properties).forEach(([key, value]) => {
-      firebaseLogEvent(analytics, 'set_user_property', {
-        name: key,
-        value: value
-      });
-    });
-  }
-};
-
-// Хук для отслеживания просмотров страниц
-export const usePageTracking = () => {
+export const usePageTracking = (analyticsService?: AnalyticsService) => {
   useEffect(() => {
-    const path = window.location.pathname + window.location.search;
-    logEvent('page_view', {
-      page_path: path,
-      page_title: document.title
-    });
-  }, [location]);
+    const trackPageView = () => {
+      const path = window.location.pathname + window.location.search;
+      
+      analyticsService?.logEvent('page_view', {
+        page_path: path,
+        page_title: document.title
+      });
+    };
+
+    // Initial page view
+    trackPageView();
+
+    // Optional: Handle route changes
+    const handleRouteChange = () => trackPageView();
+
+    return () => {
+      // Cleanup if needed
+    };
+  }, [analyticsService]);
 };
+
+// Export for direct use if needed
+export default AnalyticsService;
