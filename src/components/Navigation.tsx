@@ -34,9 +34,10 @@ const Navigation = () => {
               className="p-2 rounded-lg"
             >
               <img
-              src="src/images/logo.png"
-              alt="Logo"
-              className="w-10 h-10 "/>
+                src="/images/logo.png"
+                alt="Logo"
+                className="w-10 h-10"
+              />
             </motion.div>
             <span className="font-bold text-xl group-hover:text-primary-end transition-colors">
               ByteFlipper

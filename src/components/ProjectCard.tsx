@@ -83,7 +83,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           </div>
           
           <Link
-            to={`/projects/${project.id}`}
+            to={`/${project.id}`}
             className="inline-flex items-center text-primary-end hover:text-primary-start transition-colors group/link text-lg"
           >
             {t('projects.card.learnMore')}

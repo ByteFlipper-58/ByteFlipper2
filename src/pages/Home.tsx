@@ -45,20 +45,23 @@ const Home = () => {
         {/* Animated background elements */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-b from-dark-100 via-dark-200 to-dark-100" />
+          
+          {/* Animated Circular Glow */}
           <motion.div
             animate={{
-              scale: [1, 1.2, 1],
-              rotate: [0, 180, 360],
+              scale: [1, 1.3, 1],
+              rotate: [0, 360, 0],
+              translateX: ['-50%', '-40%', '-50%'],
+              translateY: ['-50%', '-40%', '-50%']
             }}
             transition={{
-              duration: 20,
+              duration: 10,
               repeat: Infinity,
-              ease: "linear"
+              ease: "easeInOut"
             }}
-            className="absolute inset-0 opacity-30"
-          >
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-primary-start/20 via-transparent to-transparent" />
-          </motion.div>
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-primary-start/40 via-primary-end/20 to-transparent rounded-full blur-3xl opacity-50"
+          />
+          
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary-start/5 via-transparent to-transparent opacity-60" />
         </div>
 
@@ -90,15 +93,6 @@ const Home = () => {
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
             </motion.button>
           </div>
-
-          {/* Scroll Indicator */}
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="absolute bottom-10 left-1/2 -translate-x-1/2"
-          >
-            <div className="w-[2px] h-16 bg-gradient-to-b from-primary-end to-transparent" />
-          </motion.div>
         </motion.div>
       </section>
 

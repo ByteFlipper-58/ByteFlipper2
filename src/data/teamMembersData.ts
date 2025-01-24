@@ -4,15 +4,15 @@ export const teamMembersData: Record<string, TeamMember[]> = {
   en: [
     {
       id: "shadow-master",
-      name: "dark_title.archimage",
+      name: "Kirbo",
       title: "dark_title.architect",
       image: "https://images.unsplash.com/photo-1519834785169-98be25ec3f84?w=400&h=400&fit=crop",
       description: "dark_description.archimage",
-      isRitualMaster: true,
+      isRitualMaster: false,
       skills: ["dark_skills.architecture", "dark_skills.microservices", "dark_skills.legacy", "dark_skills.cicd"],
       projects: [
         {
-          name: "dark_projects.portal.title",
+          name: "LOL",
           description: "dark_projects.portal.description",
           link: "https://github.com/dark-sect/portal",
           status: 'active'
@@ -31,7 +31,7 @@ export const teamMembersData: Record<string, TeamMember[]> = {
     },
     {
       id: "void-weaver",
-      name: "dark_title.technomancer",
+      name: "Intbyte",
       title: "dark_title.frontend",
       image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop",
       description: "dark_description.technomancer",

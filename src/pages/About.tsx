@@ -85,7 +85,7 @@ const About = () => {
               }}
             />
             <img
-              src="src/images/my-picture.jpg"
+              src="/images/my-picture.jpg"
               alt="Profile"
               className="relative rounded-full w-full h-full object-cover border-4 border-dark-100"
             />

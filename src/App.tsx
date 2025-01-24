@@ -7,9 +7,9 @@ import Projects from './pages/Projects';
 import Sectants from './pages/Sectants';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import TikTik from './pages/projects/EverBook';
-import './i18n/config';
 import EverBook from './pages/projects/EverBook';
+import { usePageTracking } from './firebase/analytics';
+import './i18n/config';
 
 // ScrollToTop component that handles scrolling on route change
 function ScrollToTop() {
@@ -18,24 +18,26 @@ function ScrollToTop() {
   useEffect(() => {
     window.scrollTo({
       top: 0,
-      behavior: 'instant' // Use 'instant' instead of 'smooth' to avoid visual glitches
+      behavior: 'instant'
     });
-  }, [location.pathname]); // Re-run when the path changes
+  }, [location.pathname]);
   
   return null;
 }
 
 function App() {
+  // Добавляем отслеживание просмотров страниц
+  usePageTracking();
+
   return (
     <Router>
       <div className="min-h-screen bg-dark-100 text-light-100 flex flex-col">
         <Navigation />
-        <ScrollToTop /> {/* Add ScrollToTop component */}
+        <ScrollToTop />
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<Projects />} />
-            <Route path="/projects/tiktik" element={<TikTik />} />
             <Route path="/sectants" element={<Sectants />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />

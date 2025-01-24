@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "byteflipper-8473f",
     "public": "dist",
     "ignore": [
       "firebase.json",

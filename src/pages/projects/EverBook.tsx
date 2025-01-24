@@ -38,7 +38,7 @@ const EverBook = () => {
   const project: Project = {
     title: "EverBook",
     description: "A modern social media platform for sharing short-form videos with interactive features and real-time engagement.",
-    icon: "src/images/everbook/logo.png", // Replace with actual app icon
+    icon: "/images/everbook/logo.png",
     technologies: [
       "Jetpack Compose", "Kotlin", "MVVM", "Room", "Firebase", "Material You",
       "Retrofit2", "OkHttp3", "GSON", "Moshi", "Datastore Preferences"
@@ -162,7 +162,7 @@ const EverBook = () => {
                     className="w-[212px] h-[80px] flex items-center justify-center"
                   >
                     <img
-                      src="src/images/badges/googleplay.png"
+                      src="/images/badges/googleplay.png"
                       alt="Get it on Google Play"
                       className="w-full h-full object-contain"
                     />
@@ -178,7 +178,7 @@ const EverBook = () => {
                     className="w-[180px] h-[60px] flex items-center justify-center"
                   >
                     <img
-                      src="src/images/badges/rustore.svg"
+                      src="/images/badges/rustore.svg"
                       alt="Get it on RuStore"
                       className="w-full h-full object-contain"
                     />

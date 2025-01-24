@@ -3,15 +3,14 @@ import { Project } from '../types/project';
 export const projectsData: Record<string, Project[]> = {
   en: [
     {
-      id: 'task-manager',
-      title: 'Task Manager Pro',
+      id: 'everbook',
+      title: 'EverBook',
       description: 'A beautiful and intuitive task management application with real-time updates and team collaboration features.',
       image: 'https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?auto=format&fit=crop&q=80&w=1000',
-      category: 'Web App',
-      technologies: ['React', 'TypeScript', 'Node.js', 'MongoDB'],
+      category: 'Android App',
+      technologies: ['Jetpack Compose', 'Node.js', 'MongoDB'],
       links: {
-        github: 'https://github.com/byteflipper/task-manager',
-        live: 'https://task-manager-pro.demo'
+        github: 'https://github.com/ByteFlipper-58/book-story'
       }
     },
     {
