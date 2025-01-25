@@ -100,41 +100,48 @@ const Home = () => {
       <section className="py-32 px-4 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-b from-dark-100/50 to-dark-200/50" />
+          
           <motion.div
-            animate={{
-              scale: [1, 1.1, 1],
-              rotate: [0, 360],
-            }}
-            transition={{
-              duration: 30,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-            className="absolute inset-0 opacity-20"
-          >
+          animate={{
+            scale: [1, 1.1, 1],
+            rotate: [0, 360],
+          }}
+          transition={{
+            duration: 30,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          className="absolute inset-0 opacity-20">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-gradient-radial from-primary-end/20 via-transparent to-transparent" />
-          </motion.div>
+            </motion.div>
         </div>
-
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="max-w-4xl mx-auto relative"
-        >
-          <motion.div
-            variants={itemVariants}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary-start to-primary-end bg-clip-text text-transparent">
-              {t('home.about.title')}
-            </h2>
-            <p className="text-xl text-light-300 leading-relaxed">
-              {t('home.about.description')}
-            </p>
-          </motion.div>
-        </motion.div>
+            
+            <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto relative">
+              
+              <motion.div
+              variants={itemVariants}
+              className="text-center mb-16">
+                
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary-start to-primary-end bg-clip-text text-transparent">
+                  {t('home.about.title')}  
+                </h2>
+                
+                <p className="text-xl text-light-300 leading-relaxed">
+                  {/* Разделение по строкам с использованием \n */}
+                  {t('home.about.description').split('\n').map((item, index) => (
+                  <span key={index}>
+                    {item}
+                    <br/>
+                    </span>
+                  ))}
+                  </p>
+                  </motion.div>
+                  </motion.div>
       </section>
 
       {/* Projects Preview Section */}

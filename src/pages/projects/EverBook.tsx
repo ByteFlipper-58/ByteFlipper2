@@ -34,8 +34,11 @@ import { Github, ExternalLink, ArrowLeft, Video, Users, MessageSquare, Heart } f
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import ScreenshotGallery from '../../components/ScreenshotGallery';
+import { useTranslation } from 'react-i18next';
 
 const EverBook = () => {
+  const { t } = useTranslation();
+  
   const project: Project = {
     title: "EverBook",
     description: "EverBook — a convenient eBook reader supporting multiple book formats.",
@@ -104,7 +107,7 @@ const EverBook = () => {
           className="inline-flex items-center text-light-300 hover:text-primary-end transition-colors mb-12 group pt-10 pl-6"
           >
             <ArrowLeft className="mr-2 group-hover:-translate-x-1 transition-transform" />
-            Back to Projects
+            {t('navigation.back_to_projects')}
             </Link>
 
             <motion.div

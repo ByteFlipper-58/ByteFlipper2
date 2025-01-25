@@ -1,7 +1,7 @@
 {
-  "name": "personal-website",
+  "name": "byteflipper",
   "private": true,
-  "version": "0.0.0",
+  "version": "v2.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",

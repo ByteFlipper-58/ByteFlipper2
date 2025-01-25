@@ -4,17 +4,18 @@ export default {
     projects: 'Projects',
     sectants: 'Sectants',
     about: 'About',
-    contact: 'Contact'
+    contact: 'Contact',
+    back_to_projects: 'Back to Projects'
   },
   home: {
     hero: {
-      title: 'Creative Developer',
-      subtitle: 'Creating digital projects that matter',
+      title: 'From Idea to Result',
+      subtitle: 'I bring ideas to life through apps and tools',
       cta: 'View Projects'
     },
     about: {
       title: 'About Me',
-      description: 'I am a passionate developer focused on creating beautiful and functional web applications. With experience in modern web technologies, I bring ideas to life through clean code and intuitive design.'
+      description: 'Welcome! I develop applications and create tools.\nInspired by technology and music, I bring ideas to life. My projects, such as FF Sensitivities, MC Tools, and EverBook, are designed to enhance convenience and user enjoyment. Explore my work and stay tuned for new updates!'
     },
     projects: {
       title: 'Featured Projects',
@@ -28,7 +29,7 @@ export default {
   },
   projects: {
     title: 'My Projects',
-    description: 'Explore my latest projects and experiments in web development, AI, and more.',
+    description: 'Here you’ll find all my projects — from mobile apps to web and Telegram tools. Each one is designed to solve real problems and improve the user experience.',
     searchPlaceholder: 'Search projects...',
     sortBy: 'Sort by',
     sortOptions: {
@@ -57,19 +58,20 @@ export default {
   },
   about: {
     title: 'About Me',
-    subtitle: 'Creative developer passionate about building beautiful and functional web applications.',
+    subtitle: 'My journey in programming started with creating mods for Minecraft PE for the mod loader InnerCore, now known as Horizon. During this time, I met some amazing people who helped me significantly improve my programming skills. We became a team of friends, calling ourselves "Sectants." Since then, I have continued to create apps and tools, inspired by technology and music. Learn more about my experience and approach to development!',
     description: 'With expertise in modern web technologies, I bring ideas to life through clean code and intuitive design.',
+    name: 'Ibragim',
     skills: {
       frontend: 'Frontend',
       backend: 'Backend',
       tools: 'Tools',
       other: 'Other'
     },
-    quote: 'The best way to predict the future is to create it.'
+    quote: 'Every project is not just code, it\'s an opportunity to make the world a little more convenient and interesting'
   },
   contact: {
-    title: 'Get in Touch',
-    subtitle: 'Have a project in mind or just want to chat? I\'d love to hear from you.',
+    title: 'Contact and Feedback',
+    subtitle: 'If you have any questions or suggestions, feel free to reach out! I\'m always open to new ideas and collaboration. Use the form below or contact me via social media to discuss projects, opportunities, or simply to connect.',
     description: 'Feel free to reach out through any of the channels below.',
     location: {
       title: 'Location & Time',

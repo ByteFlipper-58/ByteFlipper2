@@ -16,7 +16,9 @@ const Navigation = () => {
   const menuItems = [
     { path: '/', label: t('navigation.home'), icon: Home },
     { path: '/projects', label: t('navigation.projects'), icon: FolderGit2 },
-    { path: '/sectants', label: t('navigation.sectants'), icon: Flame },
+    ...(process.env.NODE_ENV === 'development' ? [
+      { path: '/sectants', label: t('navigation.sectants'), icon: Flame }
+    ] : []),
     { path: '/about', label: t('navigation.about'), icon: User },
     { path: '/contact', label: t('navigation.contact'), icon: Mail }
   ];

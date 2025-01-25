@@ -9,25 +9,25 @@ const About = () => {
     { 
       category: t('about.skills.frontend'),
       icon: Code,
-      items: ['React', 'Vue.js', 'TypeScript', 'Tailwind CSS'],
+      items: ['Jetpack Compose', 'Kotlin', 'Java', 'React', 'Vue3', 'TypeScript', 'Tailwind CSS'],
       color: 'from-blue-500 to-cyan-500'
     },
     { 
       category: t('about.skills.backend'),
       icon: Terminal,
-      items: ['Node.js', 'Python', 'PostgreSQL', 'MongoDB'],
+      items: ['Firebase Firestore & Database', 'MySQL', 'Node.js', 'Python'],
       color: 'from-green-500 to-emerald-500'
     },
     { 
       category: t('about.skills.tools'),
       icon: Tool,
-      items: ['Git', 'Docker', 'AWS', 'Firebase'],
+      items: ['Google Cloud Platform', 'Google Analytics', 'Firebase', 'Git', 'GitHub', 'Canva',],
       color: 'from-orange-500 to-amber-500'
     },
     { 
       category: t('about.skills.other'),
       icon: Palette,
-      items: ['UI/UX Design', 'SEO', 'Performance Optimization', 'Testing'],
+      items: ['UI/UX Design', 'Music Production', 'Performance Optimization', 'Testing'],
       color: 'from-purple-500 to-pink-500'
     }
   ];
@@ -92,7 +92,7 @@ const About = () => {
           </div>
           
           <h1 className="text-4xl md:text-5xl font-bold mb-4 pb-2 bg-gradient-to-r from-primary-start to-primary-end bg-clip-text text-transparent">
-            ByteFlipper
+          {t('about.name')}
           </h1>
           <p className="text-light-300 text-lg mb-8 max-w-2xl mx-auto">
             {t('about.subtitle')}
