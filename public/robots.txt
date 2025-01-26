@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://byteflipper.dev/sitemap.xml
+Sitemap: https://byteflipper.web.app/sitemap.xml

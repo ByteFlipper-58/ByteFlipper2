@@ -9,6 +9,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import EverBook from './pages/projects/EverBook';
 import FFSensitivities from './pages/projects/FFSensitivities';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 import MCTools from './pages/projects/MCTools';
 import { usePageTracking } from './firebase/analytics';
 import './i18n/config';
@@ -45,6 +46,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/everbook" element={<EverBook />} />
             <Route path="/ffsensitivities" element={<FFSensitivities />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/mctools" element={<MCTools />} />
             <Route path="*" element={<Home />} />
           </Routes>

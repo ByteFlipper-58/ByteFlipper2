@@ -53,7 +53,7 @@ const MCTools = () => {
     ],
     links: {
       github: "https://github.com/byteflipper-58/ffsensitivities2",
-      live: "https://play.google.com/store/apps/details?id=com.byteflipper.ffsensitivities",
+      live: "https://byteflipper-58.github.io/mc-tools/",
     }
   };
 
