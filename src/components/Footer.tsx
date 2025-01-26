@@ -20,7 +20,7 @@ const Footer = () => {
             ByteFlipper
           </Link>
           
-          <div className="flex items-center space-x-4">
+          {/*<!div className="flex items-center space-x-4">
             {socialLinks.map((social) => (
               <motion.a
                 key={social.label}
@@ -34,7 +34,7 @@ const Footer = () => {
                 <social.icon size={20} />
               </motion.a>
             ))}
-          </div>
+          </div>*/}
 
           <p className="text-sm text-light-300">
             © {currentYear} ByteFlipper. All rights reserved.

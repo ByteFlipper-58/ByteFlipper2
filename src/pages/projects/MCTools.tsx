@@ -30,50 +30,37 @@ interface Project {
 
 // EverBook.tsx
 import { motion } from 'framer-motion';
-import { Github, ExternalLink, ArrowLeft, Video, Users, MessageSquare, Heart } from 'lucide-react';
+import { Github, ExternalLink, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import ScreenshotGallery from '../../components/ScreenshotGallery';
 import { useTranslation } from 'react-i18next';
 
-const EverBook = () => {
+const MCTools = () => {
   const { t } = useTranslation();
   
   const project = {
-    title: t('everbook.title'),
-    description: t('everbook.description'),
-    icon: "/images/everbook/logo.png",
+    title: t('mctools.title'),
+    description: t('mctools.description'),
+    icon: "/images/mc_tools/logo.jpg",
     technologies: [
-      "Jetpack Compose", "Kotlin", "MVVM", "Room", "Firebase", "Material You",
-      "Retrofit2", "OkHttp3", "GSON", "Moshi", "Datastore Preferences"
+      "Vue3", "Git", "Github Pages", "Firebase", 
     ],
     features: [
-      t('everbook.features.list.1'),
-      t('everbook.features.list.2'),
-      t('everbook.features.list.3'),
-      t('everbook.features.list.4'),
-      t('everbook.features.list.5'),
-      t('everbook.features.list.6'),
-      t('everbook.features.list.7'),
-      t('everbook.features.list.8')
+      t('mctools.features.list.1'),
+      t('mctools.features.list.2'),
+      t('mctools.features.list.3')
     ],
     links: {
-      github: "https://github.com/byteflipper-58/book-story",
-      googlePlay: "https://play.google.com/store/apps/details?id=com.byteflipper.everbook",
-      ruStore: "https://apps.rustore.ru/app/com.byteflipper.everbook"
-    },
-    metrics: [
-      //{ icon: Video, label: "1M+ Videos", value: "1,234,567" },
-      //{ icon: Users, label: "Active Users", value: "500K+" },
-      //{ icon: MessageSquare, label: "Comments", value: "2.5M+" },
-      //{ icon: Heart, label: "Likes", value: "10M+" }
-    ]
+      github: "https://github.com/byteflipper-58/ffsensitivities2",
+      live: "https://play.google.com/store/apps/details?id=com.byteflipper.ffsensitivities",
+    }
   };
 
   const screenshots = [
-    { url: "/images/everbook/1.png", alt: t('everbook.screenshots.main') },
-    { url: "/images/everbook/2.png", alt: t('everbook.screenshots.detail') },
-    { url: "/images/everbook/3.png", alt: t('everbook.screenshots.settings') }
+    { url: "/images/mc_tools/1.png", alt: t('mctools.screenshots.main') },
+    { url: "/images/mc_tools/2.png", alt: t('mctools.screenshots.detail') },
+    { url: "/images/mc_tools/3.png", alt: t('mctools.screenshots.settings') }
   ];
 
   return (
@@ -133,36 +120,17 @@ const EverBook = () => {
                     {t('everbook.buttons.source')}
                   </motion.a>
                 )}
-                {project.links.googlePlay && (
+                {project.links.live && (
                   <motion.a
-                    href={project.links.googlePlay}
+                    href={project.links.live}
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="w-[212px] h-[80px] flex items-center justify-center"
+                    className="inline-flex items-center justify-center w-[188px] h-[63px] rounded-lg bg-gradient-to-r from-primary-start to-primary-end text-light-100"
                   >
-                    <img
-                      src="/images/badges/googleplay.png"
-                      alt={t('everbook.buttons.googlePlay')}
-                      className="w-full h-full object-contain"
-                    />
-                  </motion.a>
-                )}
-                {project.links.ruStore && (
-                  <motion.a
-                    href={project.links.ruStore}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="w-[180px] h-[60px] flex items-center justify-center"
-                  >
-                    <img
-                      src="/images/badges/rustore.svg"
-                      alt={t('everbook.buttons.ruStore')}
-                      className="w-full h-full object-contain"
-                    />
+                    <ExternalLink className="mr-2" size={24} />
+                    { t('mctools.buttons.demo') }
                   </motion.a>
                 )}
               </div>
@@ -247,4 +215,4 @@ const EverBook = () => {
   );
 };
 
-export default EverBook;
+export default MCTools;

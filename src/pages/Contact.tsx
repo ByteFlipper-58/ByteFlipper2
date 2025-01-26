@@ -24,27 +24,31 @@ const Contact = () => {
   const socialLinks = [
     {
       icon: Github,
-      label: t('contact.social.github'),
-      href: 'https://github.com/byteflipper',
-      color: 'hover:text-[#2ea44f]'
+      label: 'Github',
+      href: 'https://github.com/byteflipper-58',
+      color: 'hover:text-primary-end',
+      customIcon: 'images/social_media/github.svg'
     },
     {
       icon: Linkedin,
-      label: t('contact.social.linkedin'),
-      href: 'https://linkedin.com/in/byteflipper',
-      color: 'hover:text-[#0a66c2]'
+      label: 'X (Twitter)',
+      href: 'https://x.com/in/byteflipper',
+      color: 'hover:text-primary-end',
+      customIcon: 'images/social_media/x.svg'
     },
     {
       icon: Twitter,
-      label: t('contact.social.twitter'),
-      href: 'https://twitter.com/byteflipper',
-      color: 'hover:text-[#1da1f2]'
+      label: 'Telegram',
+      href: 'https://t.me/byteflipper',
+      color: 'hover:text-primary-end',
+      customIcon: 'images/social_media/telegram.svg'
     },
     {
       icon: Mail,
       label: t('contact.social.email'),
-      href: 'mailto:contact@byteflipper.dev',
-      color: 'hover:text-primary-end'
+      href: 'mailto:byteflipper.business@gmail.com',
+      color: 'hover:text-primary-end',
+      customIcon: 'images/social_media/email.svg'
     }
   ];
 
@@ -178,7 +182,15 @@ const Contact = () => {
                     className={`flex items-center text-light-300 ${social.color} transition-colors group/link`}
                   >
                     <div className="p-2 rounded-lg bg-dark-300 group-hover/link:bg-current/10 transition-colors">
-                      <social.icon className="group-hover/link:text-current transition-colors" size={20} />
+                      {social.customIcon ? (
+                        <img 
+                          src={social.customIcon} 
+                          alt={social.label} 
+                          className="w-6 h-6 group-hover/link:text-current" 
+                        />
+                      ) : (
+                        <social.icon className="group-hover/link:text-current transition-colors" size={24} />
+                      )}
                     </div>
                     <span className="ml-2">{social.label}</span>
                   </motion.a>

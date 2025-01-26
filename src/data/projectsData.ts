@@ -8,7 +8,7 @@ export const projectsData: Record<string, Project[]> = {
       description: 'EverBook — a convenient eBook reader supporting multiple book formats.',
       image: '/images/everbook/banner.png',
       category: 'android_apps',
-      technologies: ['Jetpack Compose', 'MVVM', 'MongoDB'],
+      technologies: ["Jetpack Compose", "Kotlin", "MVVM"],
       links: {
         github: 'https://github.com/ByteFlipper-58/book-story'
       }
@@ -19,10 +19,22 @@ export const projectsData: Record<string, Project[]> = {
       description: 'Sensitivity settings for smooth gameplay and optimal performance!',
       image: '/images/ffsensitivities/banner.png',
       category: 'android_apps',
-      technologies: ['Jetpack Compose', 'MVVM', 'React'],
+      technologies: ['Jetpack Compose', 'Kotlin', 'MVVM'],
       links: {
         github: 'https://github.com/ByteFlipper-58/FFSensitivities2'
         //live: 'https://ai-image-gen.demo'
+      }
+    },
+    {
+      id: 'mctools',
+      title: 'MC Tools',
+      description: 'This is a collection of powerful tools for Minecraft!!',
+      image: '/images/mc_tools/banner.png',
+      category: 'web_apps',
+      technologies: ["Vue3", "Git", "Github Pages", "Firebase"],
+      links: {
+        github: 'https://github.com/ByteFlipper-58/FFSensitivities2',
+        live: 'https://byteflipper-58.github.io/mc-tools/'
       }
     }
   ],
@@ -33,7 +45,7 @@ export const projectsData: Record<string, Project[]> = {
       description: 'EverBook — удобный ридер, поддерживающий множество форматов электронных книг.',
       image: '/images/everbook/banner.png',
       category: 'android_apps',
-      technologies: ['Jetpack Compose', 'Node.js', 'MongoDB'],
+      technologies: ["Jetpack Compose", "Kotlin", "MVVM"],
       links: {
         github: 'https://github.com/ByteFlipper-58/book-story'
       }
@@ -44,10 +56,22 @@ export const projectsData: Record<string, Project[]> = {
       description: 'Настройки чувствительности для более точных хедшотов!',
       image: '/images/ffsensitivities/banner.png',
       category: 'android_apps',
-      technologies: ['Jetpack Compose', 'MVVM', 'React'],
+      technologies: ['Jetpack Compose', 'Kotlin', 'MVVM'],
       links: {
         github: 'https://github.com/ByteFlipper-58/FFSensitivities2'
         //live: 'https://ai-image-gen.demo'
+      }
+    },
+    {
+      id: 'mctools',
+      title: 'MC Tools',
+      description: 'Это коллекция мощных инструментов для Minecraft!',
+      image: '/images/mc_tools/banner.png',
+      category: 'web_apps',
+      technologies: ["Vue3", "Git", "Github Pages", "Firebase"],
+      links: {
+        github: 'https://github.com/ByteFlipper-58/FFSensitivities2',
+        live: 'https://byteflipper-58.github.io/mc-tools/'
       }
     }
   ]

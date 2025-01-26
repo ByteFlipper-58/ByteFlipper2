@@ -47,6 +47,95 @@ export default {
       learnMore: 'Learn more'
     }
   },
+  everbook: {
+    title: 'EverBook',
+    description: 'EverBook — a convenient eBook reader supporting multiple book formats.',
+    features: {
+      title: 'Key Features',
+      list: {
+        1: 'Support for popular formats: PDF, EPUB, TXT, FB2 and others 📄',
+        2: 'Full reader customization: choose the perfect fonts, color themes, and other settings for comfort 👓',
+        3: 'Organized library: sort by categories and support for chapters 📚',
+        4: 'Personalized settings: create your unique reading experience with custom colors and themes 🎨',
+        5: 'Instant translation: double-click to translate text using an external translator 🌍',
+        6: 'Tablet optimization: interface tailored for larger screens 📱',
+        7: 'Simple and intuitive interface: read with ease, no complicated settings 🔧',
+        8: 'Automatic updates: the app will notify you of new versions on startup 🔄'
+      }
+    },
+    technologies: {
+      title: 'Technologies Used'
+    },
+    screenshots: {
+      title: 'Screenshots',
+      main: 'Main Screen',
+      detail: 'Detail View',
+      settings: 'Settings'
+    },
+    buttons: {
+      source: 'Source Code',
+      demo: 'Try Demo',
+      googlePlay: 'Get it on Google Play',
+      ruStore: 'Get it on RuStore'
+    }
+  },
+  ffsensitivities: {
+    title: 'FF Sensitivities',
+    description: 'Sensitivity settings for smooth gameplay and optimal performance!',
+    features: {
+      title: 'Key Features',
+      list: {
+        1: 'Cloud-based settings: New settings appear automatically without app updates ☁️',
+        2: 'Multilingual support: The app supports multiple languages, with more being added regularly 🌍',
+        3: 'Device compatibility: Supports devices from over 12 manufacturers 📱',
+        4: 'Minimalist interface: Simple and easy-to-use design without unnecessary elements ✨',
+        5: 'Ease of Use: An intuitive interface makes it easy to use the features without any hassle ⚡',
+        6: 'Automatic updates: the app will notify you of new versions on startup 🔄'
+      }
+    },
+    technologies: {
+      title: 'Technologies Used'
+    },
+    screenshots: {
+      title: 'Screenshots',
+      main: 'Main Screen',
+      detail: 'Detail View',
+      settings: 'Settings'
+    },
+    buttons: {
+      source: 'Source Code',
+      demo: 'Try Demo',
+      googlePlay: 'Get it on Google Play',
+      ruStore: 'Get it on RuStore'
+    }
+  },
+  mctools: {
+    title: 'MC Tools',
+    description: 'This is a collection of powerful tools for Minecraft!',
+    features: {
+      title: 'Key Features',
+      list: {
+        1: 'Stronghold Coordinates Calculator: A fast and accurate tool for determining the location of a Stronghold 🧭',
+        2: 'Minecraft Server Monitoring: Easily check server status and availability in real-time 🌐',
+        3: 'Minimalist Interface: Simple and user-friendly design without unnecessary elements ✨'
+      }      
+    },
+    technologies: {
+      title: 'Technologies Used'
+    },
+    screenshots: {
+      title: 'Screenshots',
+      main: 'Main Screen',
+      detail: 'Detail View',
+      settings: 'Settings'
+    },
+    buttons: {
+      source: 'Source Code',
+      demo: 'Try Web App',
+      googlePlay: 'Get it on Google Play',
+      ruStore: 'Get it on RuStore'
+    }
+  },
   sectants: {
     title: 'The Inner Circle',
     description: 'Join the mystical order of code crafters who shape digital reality',
