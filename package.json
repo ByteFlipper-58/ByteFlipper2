@@ -5,17 +5,20 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run update-sitemap && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "deploy": "firebase deploy"
+    "deploy": "firebase deploy",
+    "update-sitemap": "node scripts/update-sitemap.js"
   },
   "dependencies": {
     "firebase": "^10.14.1",
     "framer-motion": "^11.0.8",
+    "fs": "^0.0.1-security",
     "i18next": "^23.10.0",
     "i18next-browser-languagedetector": "^7.2.0",
     "lucide-react": "^0.344.0",
+    "path": "^0.12.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-helmet": "^6.1.0",
@@ -23,7 +26,8 @@
     "react-markdown": "^9.0.3",
     "react-router-dom": "^6.22.2",
     "remark-gfm": "^4.0.0",
-    "swiper": "^11.2.1"
+    "swiper": "^11.2.1",
+    "xml2js": "^0.6.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",

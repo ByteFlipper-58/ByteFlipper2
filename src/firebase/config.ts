@@ -12,6 +12,11 @@ const firebaseConfig = {
 };
 
 export const app = initializeApp(firebaseConfig);
-
 // Initialize Analytics with async check for support
-export const analytics = await isSupported().then(yes => yes ? getAnalytics(app) : null);
+let analytics = null;
+(async () => {
+  const supported = await isSupported();
+  analytics = supported ? getAnalytics(app) : null;
+})();
+
+export { analytics };
