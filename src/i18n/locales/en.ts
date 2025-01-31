@@ -204,11 +204,11 @@ export default {
     sections: {
       collection: {
         title: 'Information We Collect',
-        content: 'We collect information to provide, maintain, and improve our applications and services. This may include: \n- Device information (e.g., model, OS version, and unique identifiers).\n- App usage data (e.g., session duration, features used).\n- Crash reports for troubleshooting and stability improvements.\n\nWe use third-party services such as Firebase Analytics, Firebase Crashlytics, AdMob, Unity Ads, and AppLovin, which may collect additional data based on their own privacy policies.'
+        content: 'We collect information to provide, maintain, and improve our applications and services. This may include: \n- Device information (e.g., model, OS version, and unique identifiers).\n- App usage data (e.g., session duration, features used).\n- Crash reports for troubleshooting and stability improvements.\n\nWe use third-party services such as [Firebase Analytics](https://firebase.google.com/policies/analytics), [Firebase Crashlytics](https://firebase.google.com/support/privacy), [AdMob](https://policies.google.com/privacy), [Unity Ads](https://unity.com/legal/privacy-policy), and [AppLovin](https://www.applovin.com/privacy/), which may collect additional data based on their own privacy policies.'
       },
       usage: {
         title: 'How We Use Your Information',
-        content: 'The information we collect is used for the following purposes:\n\n- **Analytics**: To understand how our apps are used and improve user experience.\n- **Advertising**: To deliver personalized or contextual advertisements through services like AdMob, Unity Ads, and AppLovin.\n- **Troubleshooting**: To identify and fix technical issues using crash data from Firebase Crashlytics.\n\nWe do not sell your personal information to third parties.'
+        content: 'The information we collect is used for the following purposes:\n\n- **Analytics**: To understand how our apps are used and improve user experience.\n- **Advertising**: To deliver personalized or contextual advertisements through services like [AdMob](https://policies.google.com/privacy), [Unity Ads](https://unity.com/legal/privacy-policy), and [AppLovin](https://www.applovin.com/privacy/).\n- **Troubleshooting**: To identify and fix technical issues using crash data from [Firebase Crashlytics](https://firebase.google.com/support/privacy).\n\nWe do not sell your personal information to third parties.'
       },
       security: {
         title: 'Data Security',
@@ -216,7 +216,7 @@ export default {
       },
       thirdParty: {
         title: 'Third-Party Services',
-        content: 'Our applications integrate with third-party services to enhance functionality and user experience. These include:\n\n- **Firebase**: For analytics and crash reporting.\n- **AdMob, Unity Ads, and AppLovin**: For displaying advertisements.\n\nThese services collect and process data according to their own privacy policies. We recommend reviewing these policies to understand their data practices.'
+        content: 'Our applications integrate with third-party services to enhance functionality and user experience. These include:\n\n- **[Firebase](https://marketingplatform.google.com/about/analytics/terms/us/)**: For analytics and crash reporting.\n- **[AdMob](https://policies.google.com/privacy)**, **[Unity Ads](https://unity.com/legal/privacy-policy)**, and **[AppLovin](https://www.applovin.com/privacy/)**: For displaying advertisements.\n\nThese services collect and process data according to their own privacy policies. We recommend reviewing these policies to understand their data practices.'
       },
       international: {
         title: 'International Data Transfer',
@@ -225,11 +225,31 @@ export default {
       rights: {
         title: 'Your Rights',
         content: 'While we aim to provide transparency and control over your data, it is important to note that data deletion is not supported in our current applications. If you have concerns about data collection, you can reach out to us for more information.'
+      },
+      children: {
+        title: 'Children\'s Privacy',
+        content: 'Our applications are not intended for children under the age of 13. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us, and we will take steps to remove such information.'
+      },
+      cookies: {
+        title: 'Cookies and Similar Technologies',
+        content: 'Our applications and third-party partners may use cookies, device identifiers, and similar technologies to collect information about your usage patterns. You can control these through your device settings, though this may affect the functionality of certain features.'
+      },
+      retention: {
+        title: 'Data Retention',
+        content: 'We retain collected information for as long as necessary to provide our services and fulfill the purposes outlined in this Privacy Policy. When we no longer need the information, we will securely delete or anonymize it.'
+      },
+      updates: {
+        title: 'Updates to This Policy',
+        content: 'We may update this Privacy Policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. We will notify you of any material changes through our applications or other appropriate means. Your continued use of our applications after such modifications constitutes your acknowledgment of the modified Privacy Policy.'
+      },
+      compliance: {
+        title: 'Legal Compliance',
+        content: 'We comply with applicable data protection laws and regulations, including but not limited to [GDPR](https://gdpr.eu/), [CCPA](https://oag.ca.gov/privacy/ccpa), and other regional privacy laws. We will cooperate with appropriate law enforcement and regulatory authorities in response to valid legal requests.'
       }
     },
     contact: {
       title: 'Contact Us',
       content: 'If you have any questions about this Privacy Policy or our data practices, please contact us at:\n\n- Email: byteflipper.business@gmail.com\n- Telegram: [t.me/byteflipper](https://t.me/byteflipper)'
-    }  
+    }
   }
 };

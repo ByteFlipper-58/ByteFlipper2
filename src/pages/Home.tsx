@@ -46,6 +46,7 @@ const Home = () => {
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-b from-dark-100 via-dark-200 to-dark-100" />
           
+          
           {/* Animated Circular Glow */}
           <motion.div
             animate={{
