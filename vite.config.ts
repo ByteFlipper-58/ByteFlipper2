@@ -10,7 +10,11 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          'react-helmet': ['react-helmet']
+          'react-helmet': ['react-helmet'],
+          'framer-motion': ['framer-motion'],
+          'i18n': ['i18next', 'react-i18next', 'i18next-browser-languagedetector'],
+          'lucide-react': ['lucide-react'],
+          'swiper': ['swiper', 'swiper/react']
         }
       }
     }
