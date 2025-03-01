@@ -9,7 +9,7 @@ import { projectsData } from '../data/projectsData';
 const Home = () => {
   const { t, i18n } = useTranslation();
   const featuredProjects = projectsData[i18n.language] || projectsData['en'];
-  const canvasRef = useRef(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const heroContentRef = useRef(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const maxMovement = 15; // Максимальное смещение в пикселях
@@ -42,11 +42,13 @@ const Home = () => {
   // Матричный фон
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+  if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return; // Проверка, чтобы избежать ошибки
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
     
     // Персонажи для отображения (символы в стиле Matrix)
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$#@%&*()=+-/\\[]{}><;:~'.split('');

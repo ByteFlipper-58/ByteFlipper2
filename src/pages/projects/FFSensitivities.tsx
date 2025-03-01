@@ -58,7 +58,7 @@ const FFSensitivities = () => {
     links: {
       github: "https://github.com/byteflipper-58/ffsensitivities2",
       googlePlay: "https://play.google.com/store/apps/details?id=com.byteflipper.ffsensitivities",
-      //ruStore: "https://apps.rustore.ru/app/com.byteflipper.everbook"
+      ruStore: "https://apps.rustore.ru/app/com.byteflipper.everbook"
     }
   };
 
