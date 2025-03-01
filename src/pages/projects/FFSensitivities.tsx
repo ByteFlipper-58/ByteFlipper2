@@ -63,9 +63,9 @@ const FFSensitivities = () => {
   };
 
   const screenshots = [
-    { url: "/images/ffsensitivities/1.png", alt: t('ffsensitivities.screenshots.main') },
-    { url: "/images/ffsensitivities/2.png", alt: t('ffsensitivities.screenshots.detail') },
-    { url: "/images/ffsensitivities/3.png", alt: t('ffsensitivities.screenshots.settings') }
+    { url: "/images/ffsensitivities/1.webp", alt: t('ffsensitivities.screenshots.main') },
+    { url: "/images/ffsensitivities/2.webp", alt: t('ffsensitivities.screenshots.detail') },
+    { url: "/images/ffsensitivities/3.webp", alt: t('ffsensitivities.screenshots.settings') }
   ];
 
   return (

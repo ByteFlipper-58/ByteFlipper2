@@ -7,8 +7,7 @@ import {
   Twitter,
   MapPin,
   Clock,
-  Send,
-  ExternalLink
+  Send
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
@@ -32,7 +31,7 @@ const Contact = () => {
     {
       icon: Linkedin,
       label: 'X (Twitter)',
-      href: 'https://x.com/in/byteflipper',
+      href: 'https://x.com/byteflipper',
       color: 'hover:text-primary-end',
       customIcon: 'images/social_media/x.svg'
     },

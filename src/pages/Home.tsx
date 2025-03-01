@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { ArrowRight } from 'lucide-react';
@@ -8,6 +9,10 @@ import { projectsData } from '../data/projectsData';
 const Home = () => {
   const { t, i18n } = useTranslation();
   const featuredProjects = projectsData[i18n.language] || projectsData['en'];
+  const canvasRef = useRef(null);
+  const heroContentRef = useRef(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const maxMovement = 15; // Максимальное смещение в пикселях
 
   const scrollToProjects = () => {
     const projectsSection = document.getElementById('featured-projects');
@@ -15,6 +20,116 @@ const Home = () => {
       projectsSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  // Эффект следования за мышью
+  useEffect(() => {
+    const handleMouseMove = (event: { clientX: any; clientY: any; }) => {
+      const { clientX, clientY } = event;
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+      
+      // Вычисляем смещение от центра в процентах (от -1 до 1)
+      const moveX = (clientX - windowWidth / 2) / (windowWidth / 2);
+      const moveY = (clientY - windowHeight / 2) / (windowHeight / 2);
+      
+      setMousePosition({ x: moveX, y: moveY });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  // Матричный фон
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    // Персонажи для отображения (символы в стиле Matrix)
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$#@%&*()=+-/\\[]{}><;:~'.split('');
+    
+    // Количество колонок (зависит от ширины экрана)
+    const fontSize = 14;
+    const columns = Math.floor(canvas.width / fontSize);
+    
+    // Массив для отслеживания позиции Y каждой колонки
+    const drops = Array.from({ length: columns }, () => 
+      Math.floor(Math.random() * canvas.height / fontSize) * -1
+    );
+    
+    // Градиентные цвета
+    const startColor = { r: 239, g: 17, b: 111 }; // #ef116f
+    const endColor = { r: 254, g: 100, b: 7 };    // #fe6407
+    
+    // Функция для получения цвета градиента
+    const getGradientColor = (position: number) => {
+      // position - значение от 0 до 1, где 0 - это левый край, 1 - правый край
+      const r = Math.floor(startColor.r + (endColor.r - startColor.r) * position);
+      const g = Math.floor(startColor.g + (endColor.g - startColor.g) * position);
+      const b = Math.floor(startColor.b + (endColor.b - startColor.b) * position);
+      
+      return `rgb(${r}, ${g}, ${b})`;
+    };
+    
+    // Функция анимации
+    const draw = () => {
+      // Полупрозрачный черный фон для создания эффекта затухания
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      for(let i = 0; i < columns; i++) {
+        // Получаем символ
+        const char = chars[Math.floor(Math.random() * chars.length)];
+        
+        // Получаем цвет в зависимости от позиции (градиент слева направо)
+        const position = i / columns;
+        ctx.fillStyle = getGradientColor(position);
+        
+        // Рисуем символ
+        ctx.font = `${fontSize}px monospace`;
+        ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+        
+        // Когда строка достигает низа экрана, возвращаем ее наверх с вероятностью
+        if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        
+        // Двигаем каплю вниз
+        drops[i]++;
+      }
+      
+      // Продолжаем анимацию
+      animationFrameId = window.requestAnimationFrame(draw);
+    };
+    
+    let animationFrameId: number;
+    draw();
+    
+    // Обработка изменения размера окна
+    const handleResize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const newColumns = Math.floor(canvas.width / fontSize);
+      
+      // Обновляем количество колонок
+      if (newColumns > columns) {
+        for(let i = columns; i < newColumns; i++) {
+          drops[i] = Math.floor(Math.random() * canvas.height / fontSize) * -1;
+        }
+      }
+    };
+    
+    window.addEventListener('resize', handleResize);
+    
+    // Очистка
+    return () => {
+      window.cancelAnimationFrame(animationFrameId);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -40,38 +155,22 @@ const Home = () => {
 
   return (
     <div className="w-full">
-      {/* Hero Section with Parallax */}
+      {/* Hero Section with Matrix */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Animated background elements */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-dark-100 via-dark-200 to-dark-100" />
-          
-          
-          {/* Animated Circular Glow */}
-          <motion.div
-            animate={{
-              scale: [1, 1.3, 1],
-              rotate: [0, 360, 0],
-              translateX: ['-50%', '-40%', '-50%'],
-              translateY: ['-50%', '-40%', '-50%']
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-primary-start/40 via-primary-end/20 to-transparent rounded-full blur-3xl opacity-50"
-          />
-          
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary-start/5 via-transparent to-transparent opacity-60" />
-        </div>
-
-        {/* Hero Content */}
+        {/* Matrix Canvas Background */}
+        <canvas 
+          ref={canvasRef} 
+          className="absolute inset-0 z-0"
+        />
+        
+        {/* Hero Content - Убрали фон и тень контейнера */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="relative z-10 text-center px-4 max-w-4xl mx-auto"
+          ref={heroContentRef}
+          style={{
+            transform: `translate(${mousePosition.x * maxMovement}px, ${mousePosition.y * maxMovement}px)`,
+            transition: 'transform 0.2s ease-out'
+          }}
+          className="relative z-10 text-center px-4 py-8 max-w-4xl mx-auto"
         >
           <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
             <span className="bg-gradient-to-r from-primary-start to-primary-end bg-clip-text text-transparent">

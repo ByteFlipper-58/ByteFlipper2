@@ -33,10 +33,9 @@ const About = () => {
   ];
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com/byteflipper', color: 'hover:text-[#2ea44f]' },
-    { icon: Linkedin, href: 'https://linkedin.com/in/byteflipper', color: 'hover:text-[#0a66c2]' },
-    { icon: Twitter, href: 'https://twitter.com/byteflipper', color: 'hover:text-[#1da1f2]' },
-    { icon: Mail, href: 'mailto:contact@byteflipper.dev', color: 'hover:text-primary-end' }
+    { icon: Github, href: 'https://github.com/byteflipper-58', color: 'hover:text-[#2ea44f]' },
+    { icon: Twitter, href: 'https://X.com/byteflipper', color: 'hover:text-[#1da1f2]' },
+    { icon: Mail, href: 'mailto:byteflipper.business@gmail.com', color: 'hover:text-primary-end' }
   ];
 
   const containerVariants = {

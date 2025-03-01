@@ -58,9 +58,9 @@ const MCTools = () => {
   };
 
   const screenshots = [
-    { url: "/images/mc_tools/1.png", alt: t('mctools.screenshots.main') },
-    { url: "/images/mc_tools/2.png", alt: t('mctools.screenshots.detail') },
-    { url: "/images/mc_tools/3.png", alt: t('mctools.screenshots.settings') }
+    { url: "/images/mc_tools/1.webp", alt: t('mctools.screenshots.main') },
+    { url: "/images/mc_tools/2.webp", alt: t('mctools.screenshots.detail') },
+    { url: "/images/mc_tools/3.webp", alt: t('mctools.screenshots.settings') }
   ];
 
   return (
